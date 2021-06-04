@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+spec:
+  containers:
+    - name: debug 
+      image: centos:latest
+      command: ["sleep","3600"]

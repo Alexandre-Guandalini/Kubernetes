@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+spec:
+  containers:
+  - name: web
+    image: alpine:latest
+    volumeMounts:
+    - name: web
+      mountPath: /web
+  volumes:
+    - name: web
+      hostPath: /web

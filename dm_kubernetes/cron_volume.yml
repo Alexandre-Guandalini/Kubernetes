@@ -1,0 +1,25 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cron-index
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cron-index
+            image: alpine:3.12
+            args:
+            - /bin/sh
+            - -c
+            - echo $HOSTNAME $(date -u) >> /htdocs/index.html
+            volumeMounts:
+              - name: data
+                mountPath: /htdocs
+          restartPolicy: OnFailure
+          volumes:
+          - name: data
+            hostPath:
+              path: /tmp
